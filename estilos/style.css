@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*TAG HTML e suas dependências
+
+- Ela representa o tamanho da página total -> altura total
+- Se ela não tiver a altura definida, o body pode não ocupar 100% da tela
+- Pra que a altura do body em (%) funcione, o html tem que ter altura definida -> ou seja, ocupe 100% do viewport
+- Sem isso, o body cresce apenas de acordo com o conteúdo e não da tela
+- Se configurar apenas o body(%) -> pode não funcionar, layouts que dependem do total da tela podem quebrar, centralização vertical pode falhar 
+
+body {
+  height: 100%;
+}
+
+-> Só funciona se:
+
+html {
+  height: 100%;
+}
+
+-> JÁ O:
+
+body {
+  height: 100vh;
+}
+FUNCIONA SOZINHO - depende da tela
+
+*/
+
+html body{
+    height: 100vh; /*altura total do navegador*/
+    width: 100vw; /*largura total */
+
+    background-color: black;
+    background-image: url('../imagens/fundo-madeira.jpg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+main{
+    position: relative; /*sempre primeiro*/
+
+    height: 100vh;
+}
+
+section#telefone{
+    position: absolute;
+
+    /*“Coloque ESTE ponto (canto superior esquerdo) no meio do container”*/
+    /*Em relação ao seu pai - main*/
+    /*Ele apenas colocou o canto superior esquerdo no ponto central do main -> agora, precisamos "puxar o retângulo" pra esquerda e pra cima na mesma proporção*/
+    top: 50%;
+    left: 50%;
+
+    /*Centro do elemento = centro do pai*/
+    transform: translate(-50%, -50%); /*esquerda e pra cima*/
+
+    height: 627px;
+    width: 311px;
+
+    /*colocando o frame do telefone*/
+    /*
+        contain - imagem 100% exibida
+        cover - cobrir a tela inteira
+            - mesmo que picote um cpouco da imagem
+    */
+    background-image: url('../imagens/frame-iphone.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: fixed;
+}
+
+iframe#tela{
+    position: relative;
+    top: 80.3px;
+    left: 21.6px;
+
+    height: 470.8px;
+    width: 267.3px;
+
+    border-radius: 2px;
+}
+
+section#redes-sociais{
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end; /* direita */
+}
+
+section#redes-sociais img{
+    width: 50px;
+
+    margin: 10px;
+
+    border-radius: 50%;
+
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.69);
+
+    /*Pra que quando eu passe o mouse em cima, a borda faça parte da imagem e não fique arredando os outros links*/
+    box-sizing: border-box;
+}
+
+section#redes-sociais img:hover{
+    border: 2px solid rgba(255, 255, 255, 0.889);
+
+    transform: translate(-3px, -3px);
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.69);
+
+    transition: transform 0.3s, border 0.2s;
+}
